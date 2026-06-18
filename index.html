@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)file:///Z:/workspacee/evcraft.html -->
+<html lang="th"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ระบบบันทึกข้อมูลซ่อมบำรุงลง Google Drive</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./ระบบบันทึกข้อมูลซ่อมบำรุงลง Google Drive_files/css2" rel="stylesheet">
+
+<style>
+    body {
+        font-family: 'Prompt', sans-serif;
+        background-color: #f8fafc;
+    }
+</style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit} ... (rest of the original content unchanged) </style>
+</head>
+<body class="min-h-screen pb-12">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-gradient-to-r from-emerald-600 to-teal-500 text-white shadow-md py-6 mb-6">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                <div class="bg-white/20 p-2.5 rounded-xl shadow-inner backdrop-blur-md">
+                    <i class="fa-brands fa-google-drive text-2xl text-white"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-wide">ระบบบันทึกข้อมูลงานซ่อมลง Google Drive</h1>
+                    <p class="text-xs text-emerald-100 flex items-center gap-1">
+                        <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" id="statusDot"></span>
+                        <span id="connectionText">เชื่อมโยงข้อมูลสู่ Google Drive เรียบร้อย</span>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Quick Link / Navigation Tabs -->
+            <div class="flex bg-white/10 p-1.5 rounded-xl backdrop-blur-md text-xs font-semibold">
+                <button onclick="switchTab('form-tab')" id="btn-form-tab" class="px-4 py-2 rounded-lg bg-white text-emerald-700 shadow-sm transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-file-pen"></i> ฟอร์มบันทึก
+                </button>
+                <button onclick="switchTab('setup-tab')" id="btn-setup-tab" class="px-4 py-2 rounded-lg text-white hover:bg-white/10 transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-gear"></i> ตั้งค่า Google Drive
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 max-w-5xl">
+        <!-- TAB 1: FORM SECTION -->
+        <div id="form-tab" class="tab-content grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Form Card (7 cols) -->
+            <div class="lg:col-span-7 bg-white rounded-2xl shadow-sm border border-slate-100 p-6 space-y-6">
+                <div class="border-b border-slate-100 pb-4 flex justify-between items-center">
+                    <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-regular fa-file-lines text-emerald-600"></i>
+                        เอกสารบันทึกรายละเอียดงานซ่อม
+                    </h2>
+                    <span class="text-xs text-slate-400 font-medium">* จำเป็นต้องระบุ</span>
+                </div>
+                
+                <form id="driveForm" class="space-y-5">
+                    <!-- Client Section -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-4">
+                        <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                            <i class="fa-solid fa-user text-emerald-600"></i> ข้อมูลติดต่อลูกค้า
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-slate-600 mb-1">ชื่อลูกค้า <span class="text-red-500">*</span></label>
+                                <input type="text" id="customerName" required="" placeholder="ระบุชื่อจริง-นามสกุล" class="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-slate-600 mb-1">เบอร์ติดต่อ <span class="text-red-500">*</span></label>
+                                <input type="tel" id="customerPhone" required="" placeholder="เบอร์โทรศัพท์ลูกค้า" class="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-medium text-slate-600 mb-1">LINE ID</label>
+                                <input type="text" id="lineId" placeholder="ระบุ LINE ID สำหรับส่งสลิปหรือแจ้งเตือน" class="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Vehicle details -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-4">
+                        <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                            <i class="fa-solid fa-car text-emerald-600"></i> ข้อมูลยานพาหนะและบริการ
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-slate-600 mb-1">ข้อมูลรถ <span class="text-red-500">*</span></label>
+                                <input type="text" id="carInfo" required="" placeholder="เช่น จักรยานไฟฟ้า สามล้อไฟฟ้า" class="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-slate-600 mb-1">ประเภทบริการ <span class="text-red-500">*</span></label>
+                                <select id="serviceType" required="" class="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-slate-700">
+                                    <option value="" disabled="" selected="">เลือกประเภทบริการ...</option>
+                                    <option value="ซ่อมบำรุงทั่วไป">ซ่อมบำรุงทั่วไป</option>
+                                    <option value="ตรวจเช็คระบบไฟ">ตรวจเช็คระบบไฟ</option>
+                                    <option value="ตรวจเช็กสภาพ">ตรวจเช็กสภาพ</option>
+                                    <option value="แบตเตอรี่">แบตเตอรี่</option>
+                                    <option value="ซื้อ-ขาย">ซื้อ ขาย เทิร์น</option>
+                                    <option value="อื่นๆ">อื่นๆ</option>
+                                </select>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-medium text-slate-600 mb-1">รายละเอียด / อาการเข้าซ่อม <span class="text-red-500">*</span></label>
+                                <textarea id="serviceDetails" required="" rows="3" placeholder="ระบุอาการชำรุดหรือรายละเอียดเพิ่มเติมเกี่ยวกับการซ่อมบำรุง..." class="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all resize-none"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment and DateTime -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-4">
+                        <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                            <i class="fa-solid fa-money-bill-wave text-emerald-600"></i> ข้อมูลการเงินและวันเวลา
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-slate-600 mb-1">ราคา (บาท) <span class="text-red-500">*</span></label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400 text-sm">฿</span>
+                                    <input type="number" id="price" required="" min="0" placeholder="0.00" step="0.01" class="w-full pl-8 pr-3 py-2 text-sm bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-slate-600 mb-1">ประเภทการชำระเงิน <span class="text-red-500">*</span></label>
+                                <select id="paymentType" required="" class="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-slate-700">
+                                    <option value="" disabled="" selected="">เลือกประเภทการชำระเงิน...</option>
+                                    <option value="เงินสด">เงินสด</option>
+                                    <option value="โอนผ่านธนาคาร">โอนผ่านธนาคาร</option>
+                                    <option value="บัตรเครดิต">บัตรเครดิต</option>
+                                    <option value="ค้างชำระ">ค้างชำระ / รอชำระภายหลัง</option>
+                                </select>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-medium text-slate-600 mb-1">วันที่และเวลาบันทึก (DateTime) <span class="text-red-500">*</span></label>
+                                <input type="datetime-local" id="recordDateTime" required="" class="w-full px-3 py-2 text-sm bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all text-slate-700">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Images Upload -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-4">
+                        <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+                            <i class="fa-solid fa-images text-emerald-600"></i> อัปโหลดรูปภาพบันทึกพยานหลักฐาน
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Repair Photo Card -->
+                            <div class="bg-white p-3 rounded-lg border border-slate-200">
+                                <span class="block text-xs font-semibold text-slate-600 mb-2">
+                                    <i class="fa-solid fa-wrench text-slate-400 mr-1"></i> รูปภาพการซ่อมบำรุง
+                                </span>
+                                <div class="flex flex-col items-center justify-center border-2 border-dashed border-slate-200 rounded-lg p-3 hover:bg-slate-50 transition-all text-center relative h-36 overflow-hidden group cursor-pointer" id="repairBox">
+                                    <input type="file" id="repairImage" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10">
+                                    <div id="repairPlaceholder" class="flex flex-col items-center">
+                                        <i class="fa-solid fa-camera text-2xl text-slate-400 mb-1"></i>
+                                        <p class="text-xs font-bold text-slate-500">แตะเพื่อถ่ายภาพ/อัปโหลด</p>
+                                        <p class="text-[10px] text-slate-400">รูปถ่ายชิ้นงานซ่อม</p>
+                                    </div>
+                                    <img id="repairPreview" class="hidden absolute inset-0 w-full h-full object-cover z-0">
+                                    <button type="button" onclick="clearImage('repair')" id="clearRepairBtn" class="hidden absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full text-xs shadow z-20 hover:bg-red-600">
+                                        <i class="fa-solid fa-xmark w-4 h-4 flex items-center justify-center"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Payment Photo Card -->
+                            <div class="bg-white p-3 rounded-lg border border-slate-200">
+                                <span class="block text-xs font-semibold text-slate-600 mb-2">
+                                    <i class="fa-solid fa-receipt text-slate-400 mr-1"></i> รูปภาพหลักฐานการชำระ
+                                </span>
+                                <div class="flex flex-col items-center justify-center border-2 border-dashed border-slate-200 rounded-lg p-3 hover:bg-slate-50 transition-all text-center relative h-36 overflow-hidden group cursor-pointer" id="paymentBox">
+                                    <input type="file" id="paymentImage" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10">
+                                    <div id="paymentPlaceholder" class="flex flex-col items-center">
+                                        <i class="fa-solid fa-camera text-2xl text-slate-400 mb-1"></i>
+                                        <p class="text-xs font-bold text-slate-500">แตะเพื่อถ่ายภาพ/อัปโหลด</p>
+                                        <p class="text-[10px] text-slate-400">สลิปการโอนเงินหรือใบเสร็จ</p>
+                                    </div>
+                                    <img id="paymentPreview" class="hidden absolute inset-0 w-full h-full object-cover z-0">
+                                    <button type="button" onclick="clearImage('payment')" id="clearPaymentBtn" class="hidden absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full text-xs shadow z-20 hover:bg-red-600">
+                                        <i class="fa-solid fa-xmark w-4 h-4 flex items-center justify-center"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action buttons -->
+                    <div class="flex gap-3">
+                        <button type="button" onclick="resetForm()" class="w-1/3 py-3 border border-slate-200 text-slate-600 text-sm font-semibold rounded-xl hover:bg-slate-50 transition-colors">
+                            <i class="fa-solid fa-trash-can mr-1"></i> ล้างฟอร์ม
+                        </button>
+                        <button type="submit" id="submitBtn" class="w-2/3 py-3 bg-emerald-600 text-white text-sm font-bold rounded-xl hover:bg-emerald-700 transition-colors flex items-center justify-center gap-1.5 shadow-md shadow-emerald-100">
+                            <i id="submitIcon" class="fa-solid fa-cloud-arrow-up"></i> 
+                            <span id="submitText">บันทึกข้อมูลและอัปโหลดไป Google Drive</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Log history status (5 cols) -->
+            <div class="lg:col-span-5 flex flex-col space-y-4">
+                
+                <!-- Notification Banner -->
+                <div id="notification" class="hidden p-4 rounded-xl border flex items-start gap-3 shadow-xs">
+                    <div id="notifIcon" class="p-1 rounded-full text-white"></div>
+                    <div class="flex-1">
+                        <h4 id="notifTitle" class="text-xs font-bold"></h4>
+                        <p id="notifMessage" class="text-[10px] text-slate-500 mt-0.5"></p>
+                    </div>
+                </div>
+
+                <!-- Drive Storage Monitor -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-5 flex flex-col flex-1 min-h-[400px]">
+                    <div class="border-b border-slate-100 pb-3 mb-4 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
+                                <i class="fa-solid fa-clock-rotate-left text-emerald-600"></i>
+                                ประวัติการบันทึกข้อมูลล่าสุด
+                            </h3>
+                            <p class="text-[10px] text-slate-400 mt-0.5">รายการล่าสุดที่อัปโหลดเข้า Google Drive</p>
+                        </div>
+                        <span id="logCount" class="bg-emerald-50 text-emerald-700 border border-emerald-100 text-[10px] font-bold px-2 py-0.5 rounded-full">0 รายการ</span>
+                    </div>
+
+                    <div id="logContainer" class="space-y-3 flex-1 overflow-y-auto max-h-[500px]">
+                        <div id="emptyLogText" class="text-center py-20 text-slate-400">
+                            <i class="fa-solid fa-hourglass-empty text-3xl text-slate-200 mb-3"></i>
+                            <p class="text-xs font-bold">ยังไม่พบประวัติการบันทึก</p>
+                            <p class="text-[10px] mt-1">ข้อมูลจะแสดงที่นี่หลังจากคุณตั้งค่าเชื่อมต่อและส่งข้อมูลสำเร็จ</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- TAB 2: SETUP SECTION -->
+        <div id="setup-tab" class="tab-content hidden grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- Setup Form Panel -->
+            <div class="lg:col-span-5 bg-white rounded-2xl shadow-sm border border-slate-100 p-6 space-y-5">
+                <div class="border-b border-slate-100 pb-3">
+                    <h2 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-plug text-emerald-600"></i>
+                        ตั้งค่าสะพานเชื่อมต่อ (Google App Script)
+                    </h2>
+                    <p class="text-[10px] text-slate-400 mt-1">ตั้งค่านี้ถูกฝังไว้ให้อัตโนมัติแล้ว สามารถแก้ไขได้หากมีการเปลี่ยนลิงก์</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">
+                            Google Web App URL (ลิงก์เว็บแอป) <span class="text-red-500">*</span>
+                        </label>
+                        <input type="url" id="gasUrl" placeholder="https://script.google.com/macros/s/.../exec" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">
+                            Google Drive Folder ID (โฟลเดอร์ปลายทาง) <span class="text-slate-400">(ไม่บังคับ)</span>
+                        </label>
+                        <input type="text" id="driveFolderId" placeholder="หากปล่อยว่างไว้ ไฟล์จะถูกสร้างที่โฟลเดอร์แรกใน Drive" class="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 transition-all">
+                        <p class="text-[9px] text-slate-400 mt-1">เช่น รหัสตัวอักษรและตัวเลขท้ายสุดในลิงก์โฟลเดอร์ Google Drive ของคุณ</p>
+                    </div>
+
+                    <button onclick="saveSettings()" class="w-full py-2.5 bg-slate-800 text-white text-xs font-bold rounded-lg hover:bg-slate-900 transition-colors flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-floppy-disk"></i> บันทึกการอัปเดตตั้งค่า
+                    </button>
+                </div>
+            </div>
+
+            <!-- Help Guide Panel -->
+            <div class="lg:col-span-7 bg-white rounded-2xl shadow-sm border border-slate-100 p-6 space-y-4">
+                <div class="border-b border-slate-100 pb-3">
+                    <h3 class="text-base font-bold text-slate-800 flex items-center gap-1.5 text-emerald-700">
+                        <i class="fa-solid fa-circle-check"></i>
+                        การเชื่อมต่อเสร็จสมบูรณ์แล้ว
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-1">ระบบได้รับการตั้งค่า URL ให้พร้อมใช้งานแล้ว หากต้องการแก้ไขโค้ดที่ฝั่ง Google Drive สามารถดูได้ที่นี่:</p>
+                </div>
+
+                <div class="space-y-3.5 text-xs text-slate-600 leading-relaxed max-h-[500px] overflow-y-auto pr-2">
+                    <div class="flex items-start gap-2">
+                        <span class="bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded text-[10px]">1</span>
+                        <div>
+                            <p class="font-bold text-slate-800">โค้ด Google Apps Script ที่ใช้อยู่ปัจจุบัน</p>
+                            <p class="text-slate-500 mt-0.5">ในกรณีที่มีการแก้โค้ดที่ <a href="https://script.google.com/" target="_blank" class="text-blue-500 underline">script.google.com</a> นี่คือโค้ดที่คุณควรมีอยู่:</p>
+                            <pre class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-[10px] font-mono text-slate-700 my-2 select-all overflow-x-auto max-w-full"><code>function doPost(e) {
+  try {
+    var data = JSON.parse(e.postData.contents);
+    // ค้นหาโฟลเดอร์ปลายทาง
+    var folder;
+    if (data.folderId) {
+      folder = DriveApp.getFolderById(data.folderId);
+    } else {
+      folder = DriveApp.getRootFolder();
+    }
+    // สร้าง/อัปโหลดภาพซ่อมบำรุง
+    var repairUrl = "";
+    if (data.repairImage) {
+      var rBytes = Utilities.base64Decode(data.repairImage.split(",")[1]);
+      var rBlob = Utilities.newBlob(rBytes, "image/jpeg", "ซ่อม_" + data.customerName + "_" + Date.now() + ".jpg");
+      repairUrl = folder.createFile(rBlob).getUrl();
+    }
+    // สร้าง/อัปโหลดภาพหลักฐานจ่ายเงิน
+    var paymentUrl = "";
+    if (data.paymentImage) {
+      var pBytes = Utilities.base64Decode(data.paymentImage.split(",")[1]);
+      var pBlob = Utilities.newBlob(pBytes, "image/jpeg", "จ่าย_" + data.customerName + "_" + Date.now() + ".jpg");
+      paymentUrl = folder.createFile(pBlob).getUrl();
+    }
+    // ค้นหาหรือสร้าง Google Sheet "บันทึกซ่อมบำรุง" สำหรับเก็บตารางข้อมูล
+    var sheetName = "บันทึกข้อมูลรถซ่อมบำรุง";
+    var files = folder.getFilesByName(sheetName);
+    var ss;
+    if (files.hasNext()) {
+      ss = SpreadsheetApp.open(files.next());
+    } else {
+      ss = SpreadsheetApp.create(sheetName);
+      var file = DriveApp.getFileById(ss.getId());
+      folder.addFile(file);
+      DriveApp.getRootFolder().removeFile(file);
+    }
+    var sheet = ss.getSheets()[0];
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(["วันเวลาซ่อม", "ชื่อลูกค้า", "เบอร์ติดต่อ", "LINE ID", "ประเภทบริการ", "ข้อมูลรถ", "รายละเอียดอาการ", "ราคา (บาท)", "การชำระเงิน", "รูปงานซ่อม", "รูปภาพสลิป"]);
+    }
+    sheet.appendRow([
+      data.dateTime,
+      data.customerName,
+      data.customerPhone,
+      data.lineId,
+      data.serviceType,
+      data.carInfo,
+      data.serviceDetails,
+      data.price,
+      data.paymentType,
+      repairUrl,
+      paymentUrl
+    ]);
+    return ContentService.createTextOutput(JSON.stringify({status: "success", message: "อัปโหลดเรียบร้อยแล้ว!", repairUrl: repairUrl, paymentUrl: paymentUrl})).setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({status: "error", message: err.toString()})).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Script Block -->
+    <script>
+        let repairImageBase64 = "";
+        let paymentImageBase64 = "";
+        let savedLogs = [];
+        // App state on startup
+        window.addEventListener('DOMContentLoaded', () => {
+            // Set current datetime placeholder
+            const now = new Date();
+            const formatted = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+            document.getElementById('recordDateTime').value = formatted;
+            // ==========================================
+            // ออโต้ฝัง URL และรหัส Folder ให้กับผู้ใช้งาน
+            // ==========================================
+            let gasUrl = localStorage.getItem('gasUrl');
+            if (!gasUrl || gasUrl.trim() === "") {
+                gasUrl = "https://script.google.com/macros/s/AKfycbwWCNvXMUEZbS0SCMIsEHIlC6IiWgLz54XbU_zuSPHiAA9Mys9pOkae7UN_BRwhcXGL/exec";
+                localStorage.setItem('gasUrl', gasUrl);
+            }
+            let driveFolderId = localStorage.getItem('driveFolderId');
+            if (!driveFolderId || driveFolderId.trim() === "") {
+                driveFolderId = "1wZhDzC9K69AmKvYfwNAFJ03Ld6oz3vwV";
+                localStorage.setItem('driveFolderId', driveFolderId);
+            }
+            document.getElementById('gasUrl').value = gasUrl;
+            document.getElementById('driveFolderId').value = driveFolderId;
+        });
+        // ... remaining JavaScript code unchanged ...
+    </script>
+</body>
+</html>
